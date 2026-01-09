@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8992781892672690448}
   - component: {fileID: 6660072640829980017}
   - component: {fileID: 2601456556476149246}
-  - component: {fileID: 9197411426125197685}
+  - component: {fileID: 1547361349241184779}
   m_Layer: 5
-  m_Name: Tank_BugUnit
+  m_Name: Invisible_Bug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 120}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6660072640829980017
 CanvasRenderer:
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.47009617, b: 0.9168394, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9197411426125197685
+--- !u!114 &1547361349241184779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,13 +86,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4731665643100422769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30619650016abf84c83ceadb71c5fa9f, type: 3}
+  m_Script: {fileID: 11500000, guid: d1543810584fa4c41abc13ef6578874c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BugBase
-  hp: 3
-  moveSpeed: 500
+  m_EditorClassIdentifier: Assembly-CSharp::InvisibleBug
+  hp: 2
+  moveSpeed: 300
   changeDirInterval: 1.5
   deathEffectPrefab: {fileID: 4145488102786679140, guid: fa21c2f639b92a14c9e5c6592be00e08, type: 3}
+  visibleTime: 1
+  invisibleTime: 2
+  alphaWhenInvisible: 0
 --- !u!1 &8711996155863900735
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +107,7 @@ GameObject:
   - component: {fileID: 2062671931240485204}
   - component: {fileID: 2645533067598023485}
   - component: {fileID: 8335954443397932534}
+  - component: {fileID: 7450201770891327811}
   m_Layer: 5
   m_Name: TrailEffect
   m_TagString: Untagged
@@ -320,7 +324,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.10980393, a: 1}
+      maxColor: {r: 0.98823535, g: 0.35686275, b: 0.9294118, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1405,8 +1409,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 1, g: 0.35902464, b: 0.93901825, a: 1}
+        key1: {r: 0, g: 0, b: 0, a: 0.60784316}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4933,3 +4937,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7450201770891327811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711996155863900735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3662831018792c4eb5d6d26980727e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoParticleColor
+  syncEveryFrame: 1
+  alphaMultiplier: 0.6

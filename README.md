@@ -15,6 +15,13 @@ You interact with a fake phone UI, open different apps, notice how they are brok
 - **Catch Bugs**: Bugs move around the screen, bounce off edges, and may have special traits (high HP, splitting, invisibility). Tap them repeatedly to defeat them.
 - **Stage Clear**: When all bugs in the stage are fixed, a clear popup appears and you can move on to other apps.
 
+![MainMeny.png](attachment:9c4f1cc0-4c32-4f31-873e-c8630458193c:MainMeny.png)
+![AppGrid.png](attachment:a54191d5-1138-4011-a1df-c1859b42c1a4:AppGrid.png)
+![Calculator.png](attachment:26a8c453-d57f-4e3f-a792-326e7ffdb746:Calculator.png)
+![ToDoList.png](attachment:8e89e621-7782-49f2-8282-aa51fcab2e79:ToDoList.png)
+![SNS.png](attachment:ec7ee5f3-26f6-4a2e-a96d-9cb4986932e1:SNS.png)
+![StageClear.png](attachment:b01485ca-34b8-44ef-8713-ff98fd3dd1da:StageClear.png)
+
 ### Requirements
 
 - **Engine**: Unity (URP project; tested with recent 2022+ versions).

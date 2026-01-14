@@ -29,6 +29,15 @@ You interact with a fake phone UI, open different apps, notice how they are brok
 4. Open the `MainMenu` scene under `Assets/Scenes`.
 5. Press **Play** to start and test the game.
 
+### Gameplay
+<img width="392" height="685" alt="StageClear" src="https://github.com/user-attachments/assets/d5bd204f-36df-4e79-8c4b-a6ba9fb2dcc7" />
+<img width="388" height="680" alt="SNS" src="https://github.com/user-attachments/assets/c44f5504-5f0b-46ad-b0f8-89dd6798bde2" />
+<img width="389" height="680" alt="MainMeny" src="https://github.com/user-attachments/assets/adfb856e-0d20-41a0-b1cb-02a4dbf8e40c" />
+<img width="389" height="678" alt="Calculator" src="https://github.com/user-attachments/assets/41e7017e-bef0-42ea-b1ea-72b5fda04c48" />
+<img width="385" height="677" alt="AppGrid" src="https://github.com/user-attachments/assets/85471c19-2a4e-4aeb-87b1-745c31297932" />
+<img width="388" height="683" alt="ToDoList" src="https://github.com/user-attachments/assets/993cca06-a7cd-47d5-b90b-ec9f5b363bd0" />
+
+
 ### Project Structure (Key Folders)
 
 - `Assets/Scenes` – Contains `MainMenu` and main gameplay scenes.

@@ -27,12 +27,16 @@ public class UniversalBugTrigger : MonoBehaviour, IPointerDownHandler, IPointerU
     private bool isCleared = false; // [핵심] 버그를 잡아서 해결된 상태인지?
     private Vector3 originalPos;
 
-    void Start()
+    void OnEnable()  // <-- 이렇게 바꾸세요
     {
-        // [변경 1] 조건 없이 무조건 시작하자마자 고장 냄
-        TriggerBreakApp();
+        // 기존 Start에 있던 로직 그대로
+        // 시작부터 고장 내는 로직이 있다면 여기서 실행
+        
+        isCleared = false; // 클리어 상태 초기화
+        
+        // 만약 'Start With Glitch' 옵션이나 무조건 고장내기 로직이 있다면 여기서 호출
+        TriggerBreakApp(); 
     }
-
     void Update()
     {
         // 1. 이미 벌레가 나와있으면 조작 금지

@@ -35,6 +35,18 @@ public class Calculator : MonoBehaviour
         inputField.text = "0";
     }
 
+    void OnEnable()
+    {
+        Clear(); // 숫자 0으로 초기화
+        
+        // 버그들 다 끄기
+        bug_ReversePlus = false;
+        bug_TripleThree = false;
+        // ... 나머지 버그 변수들도 false로 ...
+        
+        // 연결된 UniversalBugTrigger가 있다면 그것도 초기화되면 좋음
+    }
+
     public void Backspace()
     {
         // [BUG 3] 지우기 -> 증식

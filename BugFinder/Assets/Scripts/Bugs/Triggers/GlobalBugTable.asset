@@ -27,7 +27,4 @@ MonoBehaviour:
     weight: 1
   - name: Split
     prefab: {fileID: 4731665643100422769, guid: aa2943c7540663c4084545692b3606c8, type: 3}
-    weight: 1
-  - name: TEST
-    prefab: {fileID: 4731665643100422769, guid: 389e86fea736dbe4e83126549ae850f5, type: 3}
     weight: 100

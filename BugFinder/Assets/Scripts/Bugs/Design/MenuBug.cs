@@ -62,21 +62,29 @@ public class BugWalker : MonoBehaviour, IPointerDownHandler
         targetPosition = new Vector2(Random.Range(-w, w), Random.Range(-h, h));
     }
 
-    // 터치되었을 때 (사망)
     public void OnPointerDown(PointerEventData eventData)
     {
-        // 1. 이펙트 생성 (있다면)
         if (explosionEffect != null)
         {
-            GameObject effect = Instantiate(explosionEffect, transform.parent);
-            effect.transform.position = transform.position;
-            Destroy(effect, 1.0f); // 1초 뒤 이펙트 삭제
+            // 1. 내가 속한 캔버스(Canvas)를 찾음 (제일 안전한 부모)
+            Canvas rootCanvas = GetComponentInParent<Canvas>();
+            Transform targetParent = (rootCanvas != null) ? rootCanvas.transform : transform.root;
+
+            // 2. 이펙트 생성 (일단 위치는 내 현재 위치로)
+            GameObject effect = Instantiate(explosionEffect, transform.position, Quaternion.identity, targetParent);
+            
+            // 3. [핵심] 스케일 1,1,1로 초기화 (찌그러짐 방지)
+            effect.transform.localScale = Vector3.one; 
+            
+            // 4. [핵심] Z축을 앞으로 확 당김 (화면 뒤로 숨는 거 방지)
+            Vector3 pos = effect.transform.localPosition;
+            pos.z = -500f; // UI보다 확실히 앞에 오도록 -500
+            effect.transform.localPosition = pos;
+
+            Destroy(effect, 1.0f);
         }
 
-        // 2. 매니저에게 알림 (나 죽어요~)
         OnBugDeath?.Invoke();
-
-        // 3. 자폭
         Destroy(gameObject);
     }
 }

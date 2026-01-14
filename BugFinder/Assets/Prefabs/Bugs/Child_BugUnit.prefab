@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BugBase
   hp: 1
-  moveSpeed: 800
+  moveSpeed: 0
   changeDirInterval: 1.5
   deathEffectPrefab: {fileID: 4145488102786679140, guid: fa21c2f639b92a14c9e5c6592be00e08, type: 3}
 --- !u!1 &8711996155863900735

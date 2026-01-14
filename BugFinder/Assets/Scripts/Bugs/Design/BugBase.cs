@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System; // [필수] Action(콜백)을 사용하기 위해 필요
 
@@ -28,6 +29,35 @@ public class BugBase : MonoBehaviour, IPointerDownHandler
         
         // 초기 방향 설정
         SetRandomDirection();
+
+        SyncTrailColor();
+    }
+
+    void SyncTrailColor()
+    {
+        // 1. 내 몸통 정보 가져오기
+        UnityEngine.UI.Image myBodyImage = GetComponent<UnityEngine.UI.Image>();
+        
+        // 2. 자식으로 있는 파티클 시스템 찾기
+        ParticleSystem trailEffect = GetComponentInChildren<ParticleSystem>();
+
+        if (myBodyImage != null && trailEffect != null)
+        {
+            // --- [색상 동기화] ---
+            var main = trailEffect.main;
+            main.startColor = myBodyImage.color; // 내 색깔 그대로 적용
+
+            // --- [위치 자동 보정] 핵심 추가! ⭐ ---
+            // 내 크기(Height)의 절반만큼 아래로 내리면 정확히 엉덩이 위치가 됩니다.
+            // (Pivot이 정중앙(0.5, 0.5)이라고 가정)
+            float halfHeight = rectTransform.rect.height / 2f;
+
+            // 살짝 안쪽(-0.8f)에서 나오게 해야 더 자연스럽습니다. (완전 끝이면 떨어져 보임)
+            float offset = halfHeight * 0.8f; 
+
+            // 로컬 좌표 기준 Y값을 내림 (위쪽이 머리니까, 아래쪽이 엉덩이)
+            trailEffect.transform.localPosition = new Vector3(0, -offset, 0);
+        }
     }
 
     protected virtual void Update()
@@ -113,16 +143,35 @@ public class BugBase : MonoBehaviour, IPointerDownHandler
 
     protected virtual void Die()
     {
-        Debug.Log("🐛 버그 사망!");
-        
-        // [핵심] 나 죽었다고 연락처(Callback)에 신호 보냄
-        // CalculatorBugTrigger의 FixBug()가 여기서 실행됨
+        // 1. 죽었다고 알림
         onDeathCallback?.Invoke();
 
-        // 이펙트 생성
         if (deathEffectPrefab != null)
         {
-            Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+            // 2. 이펙트 생성 (부모를 버그와 같은 캔버스로 설정)
+            GameObject effect = Instantiate(deathEffectPrefab, transform.position, transform.rotation, transform.parent);
+            
+            // [핵심 1] 리스트의 가장 마지막으로 보내서 가장 위에 그려지게 함 (UI 렌더링 순서)
+            effect.transform.SetAsLastSibling();
+
+            // [핵심 2] 위치 및 스케일 교정 + Z축을 앞으로 당김
+            effect.transform.localScale = Vector3.one;
+            Vector3 pos = effect.transform.localPosition;
+            
+            // ★ 중요: Z값을 -100 정도로 설정해 카메라 쪽으로 툭 튀어나오게 함.
+            // (배경에 절대 묻히지 않게 하는 비기)
+            pos.z = -100f; 
+            effect.transform.localPosition = pos;
+
+            // 3. 내 색상을 파티클에 적용
+            Image myImage = GetComponent<Image>();
+            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+
+            if (myImage != null && ps != null)
+            {
+                var main = ps.main;
+                main.startColor = myImage.color;
+            }
         }
 
         Destroy(gameObject);

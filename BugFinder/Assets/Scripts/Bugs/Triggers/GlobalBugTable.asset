@@ -15,19 +15,19 @@ MonoBehaviour:
   bugList:
   - name: Fast
     prefab: {fileID: 4731665643100422769, guid: 4c2d5806f49aa5442a30226d37c0ed58, type: 3}
-    weight: 10
+    weight: 1
   - name: Jump
     prefab: {fileID: 4731665643100422769, guid: fa74b51b980e4cb42880573762957f2d, type: 3}
-    weight: 10
+    weight: 1
   - name: Invisible
     prefab: {fileID: 4731665643100422769, guid: c0b45c80d2439e44b9352f7acb89b642, type: 3}
-    weight: 10
+    weight: 1
   - name: Tank
     prefab: {fileID: 4731665643100422769, guid: 52e3b98740939774d930262f4a470979, type: 3}
-    weight: 10
+    weight: 1
   - name: Split
     prefab: {fileID: 4731665643100422769, guid: aa2943c7540663c4084545692b3606c8, type: 3}
-    weight: 10
-  - name: Test
+    weight: 1
+  - name: TEST
     prefab: {fileID: 4731665643100422769, guid: 389e86fea736dbe4e83126549ae850f5, type: 3}
     weight: 100
